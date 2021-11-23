@@ -21,14 +21,8 @@ from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 
-## Showing the coefficient , interception and score of the prediction
-print(regressor.score(X_train, y_train))
-print(regressor.coef_)
-print(regressor.intercept_)
-
 ## Predicting the Test set results
 y_pred = regressor.predict(X_test)
-
 
 ## Visualising the Training set results
 plt.scatter(X_train, y_train, color='red')
@@ -46,5 +40,28 @@ plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
 plt.show()
 
+## Making a single prediction
+print(regressor.predict([[12]]))
+# Above will print salary of the individual with provided number of years of experience
+###### Important Note ######
+# Notice that the value of the feature (12 years) was a input in double pair of square brackets.
+# That's because the 'predict' method always expects a 2D array as the format of its inputs.
+# And puting 12 into a double pair of square brackets makes the input exactly a 2D array.
+# Simply put:
+# 12      ----- scaler
+# [12]    ----- 1D array
+# [[12]]  ----- 2D array
+
+## Showing the coefficient , interception and score of the prediction
+print(regressor.score(X_train, y_train))
+print(regressor.coef_)
+print(regressor.intercept_)
+
+# Therefore, the equation of our simple linear regaression model is:
+#  Salary = regressor.coef_ * Years of Experience + regressor.intercept_
+###### Important Note ######
+# To get those coefficients we called the 'coef_' and 'intercept_' attributes from our regressor
+# object. Attributes in python are different than methods and usually return a simple value or
+# an array of values.
 
 print("----- %s seconds -----"% (time.time()-start_time))
