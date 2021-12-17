@@ -2,6 +2,7 @@
 
 ## Importing the libraries
 import time
+from joblib.logger import PrintTime
 
 from sklearn import metrics
 start_time = time.time()
@@ -36,6 +37,11 @@ classifier.fit(X_train, y_train)
 ## Predicting the test set results
 y_pred = classifier.predict(X_test)
 print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))
+
+## Making the confusion matrix
+from sklearn.metrics import confusion_matrix, accuracy_score
+print(confusion_matrix(y_test, y_pred))
+print(accuracy_score(y_test, y_pred))
 
 ## Visualising the training set results
 from matplotlib.colors import ListedColormap
