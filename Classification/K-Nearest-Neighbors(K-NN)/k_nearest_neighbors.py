@@ -2,18 +2,14 @@
 
 ## Importing the libraries
 import time
-from joblib.logger import PrintTime
-
-from sklearn import metrics
 start_time = time.time()
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.sparse.construct import rand
 
 ## Importing the dataset
 dataset = pd.read_csv('Social_Network_Ads.csv')
-X = dataset.iloc[:, 1:-1].values
+X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
 
 ## Splitting the dataset into the Training set and Test set
@@ -32,7 +28,7 @@ classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
 classifier.fit(X_train, y_train)
 
 ## Predicting a new result
-# print(classifier.predict(sc.transform([[30,87000]])))
+print(classifier.predict(sc.transform([[30,87000]])))
 
 ## Predicting the test set results
 y_pred = classifier.predict(X_test)
