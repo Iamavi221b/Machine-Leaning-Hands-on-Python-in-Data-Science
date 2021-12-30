@@ -28,6 +28,8 @@ plt.show()
 ## Training the K-Means model on the dataset
 kmeans = KMeans(n_clusters=5, init='k-means++', random_state=42)
 y_kmeans = kmeans.fit_predict(Y)
+## Here fit predict method not only train the model but also create a depedent variable
+## which will show the cluster the data points belongs to.
 
 ## Visualising the clusters
 plt.scatter(Y[y_kmeans==0, 0], Y[y_kmeans==0, 1], s=100, c='red', label='Cluster 1')
