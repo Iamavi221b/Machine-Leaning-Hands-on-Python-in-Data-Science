@@ -55,4 +55,16 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 print(confusion_matrix(y_test, y_pred))
 print(accuracy_score(y_test, y_pred))
 
+## Predicting if a single review is postive or negative
+my_review = 'I love this place'
+my_review = re.sub('[^a-zA-Z]', ' ', my_review)
+my_review = my_review.lower()
+my_review = my_review.split()
+my_review = [ps.stem(word) for word in my_review if not word in set(all_stopwords)]
+my_review = ' '.join(my_review)
+my_review = [my_review]
+my_review = cv.transform(my_review).toarray()
+
+print(classifier.predict(my_review))
+
 print("----- {} seconds -----".format(time.time()-start_time))
